@@ -4,20 +4,20 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./connect";
 
 import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import DiscordProvider from "next-auth/providers/discord";
 import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
 
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID as string,
-      clientSecret: process.env.GOOGLE_SECRET as string,
-    }),
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
+    }),
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID as string,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_ID as string,
