@@ -5,6 +5,7 @@ import prisma from "./connect";
 
 import GithubProvider from "next-auth/providers/github";
 import DiscordProvider from "next-auth/providers/discord";
+import TwitterProvider from "next-auth/providers/twitter";
 import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions: NextAuthOptions = {
@@ -19,11 +20,16 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.DISCORD_CLIENT_ID as string,
       clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
     }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_ID as string,
-      clientSecret: process.env.FACEBOOK_SECRET as string,
-    }),
+    // TwitterProvider({
+    //   clientId: process.env.TWITTER_CLIENT_ID as string,
+    //   clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
+    // }),
+    // FacebookProvider({
+    //   clientId: process.env.FACEBOOK_ID as string,
+    //   clientSecret: process.env.FACEBOOK_SECRET as string,
+    // }),
   ],
+  secret: process.env.NEXT_SECRET,
 };
 
 export const getAuthSession = () => getServerSession(authOptions);
