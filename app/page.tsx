@@ -17,19 +17,21 @@ export default function Home() {
   return (
     <main className="min-h-screen p-4 sm:p-10 md:p-12 flex items-center justify-center">
       <div className="w-full border-4 text-center border-pink-900 rounded-lg p-8 space-y-8">
+        {/* LOGOUT BUTTON */}
         <div className="text-end">
           {session ? (
             <button
-              className="bg-pink-600 px-4 py-1 rounded-md hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] uppercase"
+              className="bg-pink-600 px-4 py-1 rounded-md hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
               onClick={() => signOut()}
             >
-              Sign out
+              log out
             </button>
           ) : (
             <button onClick={() => signIn()}>Sing in</button>
           )}
         </div>
 
+        {/* PROFILE IMAGE */}
         <div className="flex justify-center">
           <Image
             src={session?.user?.image!}
@@ -40,16 +42,19 @@ export default function Home() {
           />
         </div>
 
+        {/* USER INFO */}
         <div>
           <h1 className="text-3xl mb-2">{session?.user?.name}</h1>
           <p>{session?.user?.email}</p>
         </div>
 
+        {/* PROVIDER */}
         <div className="pb-16 border-b-2 ">
           You logged in using
           <span className="bg-pink-600 px-4 py-1 rounded-md ml-2">{session?.user?.provider}</span>
         </div>
 
+        {/* WEBSITE INFO */}
         <div className="space-y-6">
           <p className="text-sm">{text1}</p>
           <p className="text-xs font-bold">{text2}</p>
@@ -63,6 +68,8 @@ export default function Home() {
           </p>
         </div>
 
+        {/* REFACTOR!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+        {/* LINKS */}
         <div className="flex justify-center gap-4 md:gap-6">
           <Link
             href="/"
