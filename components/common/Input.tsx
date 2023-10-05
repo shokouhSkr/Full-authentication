@@ -24,7 +24,7 @@ const Input = ({
   return (
     <div className="mt-3 w-full">
       {/* LABEL */}
-      <label htmlFor={name} className="text-gray-700 ml-2">
+      <label htmlFor={name} className="text-gray-700">
         {label}
       </label>
 
@@ -55,7 +55,7 @@ const Input = ({
         )}
 
         {/* ERROR MESSAGE */}
-        {error && <p className="text-sm text-red-600 mt-1 ml-2">{error}</p>}
+        {error && <p className="text-sm text-red-600 mt-1">{error}</p>}
       </div>
     </div>
   );

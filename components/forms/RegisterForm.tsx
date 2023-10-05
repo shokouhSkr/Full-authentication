@@ -7,6 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import { CiUser, CiMail, CiPhone, CiLock } from "react-icons/ci";
+import Link from "next/link";
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 
@@ -35,6 +36,13 @@ const FormSchema = z
       .max(52, "Password must be less than 52 characters."),
 
     confirmPassword: z.string(),
+
+    // for checkbox and other booleans
+    accept: z.literal(true, {
+      errorMap: () => ({
+        message: "Please agree to all the terms and conditions before continuing.",
+      }),
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Password doesn't match",
@@ -70,7 +78,7 @@ const RegisterForm = () => {
 
   return (
     <form className="my-8 text-sm" onSubmit={handleSubmit(onSubmit)}>
-      <div className="gap-2 md:grid md:grid-cols-2">
+      <div className="gap-2 md:grid md:grid-cols-2 md:gap-x-4">
         <Input
           name="first_name"
           label="First name"
@@ -121,7 +129,7 @@ const RegisterForm = () => {
             label="Password"
             type="password"
             icon={<CiLock />}
-            placeholder="******"
+            placeholder="*********"
             register={register}
             error={errors?.password?.message}
             // error="error's here"
@@ -150,12 +158,31 @@ const RegisterForm = () => {
           label="Confirm password"
           type="password"
           icon={<CiLock />}
-          placeholder="******"
+          placeholder="*********"
           register={register}
           error={errors?.confirmPassword?.message}
           // error="error's here"
           disabled={isSubmitting}
         />
+        <div className="mt-3">
+          <input
+            type="checkbox"
+            id="accept"
+            className="mr-2 focus:ring-0 rounded"
+            {...register("accept")}
+          />
+          <label htmlFor="accept" className="text-gray-700">
+            I accept the{" "}
+            <Link href="/" target="_blank" className="text-blue-600">
+              terms
+            </Link>{" "}
+            and{" "}
+            <Link href="/" target="_blank" className="text-blue-600">
+              privacy policy
+            </Link>
+          </label>
+          {errors?.accept && <p className="text-sm text-red-600 mt-1">{errors.accept.message}</p>}
+        </div>
       </div>
 
       <button type="submit" className="bg-blue-500 rounded px-4 py-1 mt-5">
