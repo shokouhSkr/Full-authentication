@@ -19,8 +19,8 @@
     "react-dom": "latest",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
-    "validator": "^13.11.0",
-    "zod": "^3.22.3"
+    "zod": "^3.22.3",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@types/node": "latest",
