@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Input from "../common/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import { CiUser, CiMail, CiPhone, CiLock } from "react-icons/ci";
 import Link from "next/link";
+import SlideButton from "../buttons/SlideButton";
+import Input from "../common/Input";
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 
@@ -78,7 +79,7 @@ const RegisterForm = () => {
 
   return (
     <form className="my-8 text-sm" onSubmit={handleSubmit(onSubmit)}>
-      <div className="gap-2 md:grid md:grid-cols-2 md:gap-x-4">
+      <div className="gap-2 sm:grid sm:grid-cols-2 sm:gap-x-4">
         <Input
           name="first_name"
           label="First name"
@@ -185,9 +186,13 @@ const RegisterForm = () => {
         </div>
       </div>
 
-      <button type="submit" className="bg-blue-500 rounded px-4 py-1 mt-5">
-        submit
-      </button>
+      <SlideButton
+        type="submit"
+        text="Sign up"
+        slide_text="Secure sign up"
+        icon={<CiLock />}
+        disabled={isSubmitting}
+      />
     </form>
   );
 };

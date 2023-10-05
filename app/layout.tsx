@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className}`}>
         <Providers>
-          <div>{children}</div>
+          <div className="min-h-[calc(100dvh)]">{children}</div>
         </Providers>
       </body>
     </html>
