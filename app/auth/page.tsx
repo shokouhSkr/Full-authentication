@@ -5,9 +5,9 @@ import Link from "next/link";
 const AuthPage = () => {
   return (
     <Container>
-      <div className="text-center space-y-10">
+      <div className="space-y-10">
         {/* TITLE */}
-        <div className="space-y-4">
+        <div className="space-y-4 text-center">
           <h1 className="font-semibold text-4xl">Sign up</h1>
           <p className="text-xl">
             You already have an account?{" "}
