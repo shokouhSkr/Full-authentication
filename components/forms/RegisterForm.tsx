@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../common/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import zxcvbn from "zxcvbn";
 import { CiUser, CiMail, CiPhone, CiLock } from "react-icons/ci";
 
 type FormSchemaType = z.infer<typeof FormSchema>;
@@ -53,6 +54,20 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<FormSchemaType> = (data) => console.log(data);
 
+  /******************************/
+  // PASSWORD VALIDATION
+
+  const validatePasswordStrength = () => {
+    let password = watch().password;
+    return zxcvbn(password ? password : "").score;
+  };
+  // console.log("password score: ", zxcvbn("1qazxsw23edc"));
+
+  useEffect(() => {
+    setPasswordScore(validatePasswordStrength());
+  }, [watch().password]);
+  /******************************/
+
   return (
     <form className="my-8 text-sm" onSubmit={handleSubmit(onSubmit)}>
       <div className="gap-2 md:grid md:grid-cols-2">
@@ -100,17 +115,36 @@ const RegisterForm = () => {
           // error="error's here"
           disabled={isSubmitting}
         />
-        <Input
-          name="password"
-          label="Password"
-          type="password"
-          icon={<CiLock />}
-          placeholder="******"
-          register={register}
-          error={errors?.password?.message}
-          // error="error's here"
-          disabled={isSubmitting}
-        />
+        <div className="space-y-2">
+          <Input
+            name="password"
+            label="Password"
+            type="password"
+            icon={<CiLock />}
+            placeholder="******"
+            register={register}
+            error={errors?.password?.message}
+            // error="error's here"
+            disabled={isSubmitting}
+          />
+          {watch().password?.length > 0 && (
+            <div className="flex justify-between mt-2">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div className="w-1/6 mt-0.5">
+                  <span
+                    className={`block h-2 rounded-xl ${
+                      passwordScore <= 2
+                        ? "bg-red-400"
+                        : passwordScore < 4
+                        ? "bg-yellow-400"
+                        : "bg-green-500"
+                    }`}
+                  ></span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         <Input
           name="confirmPassword"
           label="Confirm password"
