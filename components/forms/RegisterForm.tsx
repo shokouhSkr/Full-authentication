@@ -9,46 +9,9 @@ import { CiUser, CiMail, CiPhone, CiLock } from "react-icons/ci";
 import Link from "next/link";
 import SlideButton from "../buttons/SlideButton";
 import Input from "../common/Input";
+import { FormSchema } from "@/helpers/formValidation";
 
 type FormSchemaType = z.infer<typeof FormSchema>;
-
-// VALIDATION
-const FormSchema = z
-  .object({
-    first_name: z
-      .string()
-      .min(2, "First name must be at least 2 characters.")
-      .max(32, "First name must be less than 32 characters.")
-      .regex(/^[a-zA-Z]+$/, "No special characters allowed."),
-
-    last_name: z
-      .string()
-      .min(2, "Last name must be at least 2 characters.")
-      .max(32, "Last name must be less than 32 characters.")
-      .regex(/^[a-zA-Z]+$/, "No special characters allowed."),
-
-    email: z.string().email("Please enter a valid email address."),
-
-    phone: z.string().regex(/^\+98 \(\d{3}\) \d{3}-\d{4}$/, "Please enter a valid phone number"),
-
-    password: z
-      .string()
-      .min(2, "Password must be at least 6 characters.")
-      .max(52, "Password must be less than 52 characters."),
-
-    confirmPassword: z.string(),
-
-    // for checkbox and other booleans
-    accept: z.literal(true, {
-      errorMap: () => ({
-        message: "Please agree to all the terms and conditions before continuing.",
-      }),
-    }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Password doesn't match",
-    path: ["confirmPassword"],
-  });
 
 const RegisterForm = () => {
   const {
@@ -140,7 +103,7 @@ const RegisterForm = () => {
           {watch().password?.length > 0 && (
             <div className="flex justify-between mt-2">
               {Array.from({ length: 5 }).map((_, i) => (
-                <div className="w-1/6 mt-0.5">
+                <div key={i} className="w-1/6 mt-0.5">
                   <span
                     className={`block h-2 rounded-xl ${
                       passwordScore <= 2

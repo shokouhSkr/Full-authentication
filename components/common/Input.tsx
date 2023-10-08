@@ -57,8 +57,9 @@ const Input = ({
         {(name === "password" || name === "confirmPassword") && (
           <div
             onClick={() => setShowPassword(!showPassword)}
-            style={{ right: `${error ? "35px" : "14px"}` }}
-            className="absolute top-[9px] text-xl text-gray-700 cursor-pointer"
+            className={`absolute top-[9px] ${
+              error ? "right-[35px]" : "right-[14px]"
+            } text-xl text-gray-700 cursor-pointer`}
           >
             {showPassword ? <PiEyeThin /> : <PiEyeClosedThin />}
           </div>
