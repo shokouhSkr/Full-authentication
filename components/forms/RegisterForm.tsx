@@ -128,6 +128,7 @@ const RegisterForm = () => {
           <Input
             name="password"
             label="Password"
+            // type={showPassword ? "text" : "password"}
             type="password"
             icon={<CiLock />}
             placeholder="*********"
@@ -165,7 +166,7 @@ const RegisterForm = () => {
           // error="error's here"
           disabled={isSubmitting}
         />
-        <div className="mt-3">
+        <div className="my-6">
           <input
             type="checkbox"
             id="accept"

@@ -13,7 +13,8 @@ export async function middleware(req: NextRequest) {
 
   if (pathname === "/") {
     if (!session) {
-      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/auth`);
+      // return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/auth`);
+      return NextResponse.redirect(`http://localhost:3000/auth`);
     }
   }
 

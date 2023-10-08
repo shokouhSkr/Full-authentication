@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import { IoAlertCircle } from "react-icons/io5";
+import { PiEyeClosedThin, PiEyeThin } from "react-icons/pi";
 
 type InputPropsType = {
   name: string;
@@ -21,6 +25,8 @@ const Input = ({
   error,
   disabled,
 }: InputPropsType) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="mt-3 w-full">
       {/* LABEL */}
@@ -36,7 +42,7 @@ const Input = ({
 
         {/* INPUT */}
         <input
-          type={type}
+          type={showPassword ? "text" : type}
           id={name}
           className={`${
             error
@@ -46,6 +52,17 @@ const Input = ({
           placeholder={placeholder}
           {...register(name)}
         />
+
+        {/* SHOW AND HIDE PASSWORD */}
+        {(name === "password" || name === "confirmPassword") && (
+          <div
+            onClick={() => setShowPassword(!showPassword)}
+            style={{ right: `${error ? "35px" : "14px"}` }}
+            className="absolute top-[9px] text-xl text-gray-700 cursor-pointer"
+          >
+            {showPassword ? <PiEyeThin /> : <PiEyeClosedThin />}
+          </div>
+        )}
 
         {/* ERROR ICON */}
         {error && (
