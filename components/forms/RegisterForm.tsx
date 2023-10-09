@@ -10,6 +10,8 @@ import Link from "next/link";
 import SlideButton from "../buttons/SlideButton";
 import Input from "../common/Input";
 import { FormSchema } from "@/helpers/formValidation";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 
@@ -24,7 +26,21 @@ const RegisterForm = () => {
   });
   const [passwordScore, setPasswordScore] = useState(0);
 
-  const onSubmit: SubmitHandler<FormSchemaType> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormSchemaType> = async (values) => {
+    try {
+      const { data } = await axios.post("/api/auth/signup", { ...values });
+      console.log("data: ", data);
+
+      if (data.status === 401) {
+        toast.error(data.message);
+      }
+      if (data.status === 200) {
+        toast.success(data.message);
+      }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
 
   /******************************/
   // PASSWORD VALIDATION
@@ -51,7 +67,7 @@ const RegisterForm = () => {
           placeholder="example"
           register={register}
           error={errors?.first_name?.message} // first_name comes from form schema
-          // error="error's here"
+          // error="error is here"
           disabled={isSubmitting}
         />
         <Input
@@ -62,7 +78,6 @@ const RegisterForm = () => {
           placeholder="example"
           register={register}
           error={errors?.last_name?.message}
-          // error="error's here"
           disabled={isSubmitting}
         />
         <Input
@@ -73,7 +88,6 @@ const RegisterForm = () => {
           placeholder="example@example.com"
           register={register}
           error={errors?.email?.message}
-          // error="error's here"
           disabled={isSubmitting}
         />
         <Input
@@ -84,7 +98,6 @@ const RegisterForm = () => {
           placeholder="+98 (xxx) xxx-xxxx"
           register={register}
           error={errors?.phone?.message}
-          // error="error's here"
           disabled={isSubmitting}
         />
         <div className="space-y-2">
@@ -97,7 +110,6 @@ const RegisterForm = () => {
             placeholder="*********"
             register={register}
             error={errors?.password?.message}
-            // error="error's here"
             disabled={isSubmitting}
           />
           {watch().password?.length > 0 && (
@@ -126,7 +138,6 @@ const RegisterForm = () => {
           placeholder="*********"
           register={register}
           error={errors?.confirmPassword?.message}
-          // error="error's here"
           disabled={isSubmitting}
         />
         <div className="my-6">

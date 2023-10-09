@@ -8,7 +8,13 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider>
       {children}
-      <ToastContainer position="top-center" autoClose={1500} hideProgressBar theme="colored" />
+      <ToastContainer
+        style={{ width: "400px" }}
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar
+        theme="colored"
+      />
     </SessionProvider>
   );
 };
