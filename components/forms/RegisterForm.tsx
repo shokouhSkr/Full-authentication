@@ -19,6 +19,7 @@ const RegisterForm = () => {
   const {
     register,
     watch,
+    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormSchemaType>({
@@ -35,6 +36,7 @@ const RegisterForm = () => {
         toast.error(data.message);
       }
       if (data.status === 200) {
+        reset();
         toast.success(data.message);
       }
     } catch (error: any) {
