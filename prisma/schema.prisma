@@ -42,7 +42,7 @@ model User {
   id            String    @id @default(cuid()) @map("_id")
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
+  emailVerified Boolean   @default(false)
   phone         String?   @unique
   image         String?   @default("https://res.cloudinary.com/dmhcnhtng/image/upload/v1664642479/992490_sskqn3.png")
   password      String?

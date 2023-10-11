@@ -19,10 +19,14 @@ export const PUT = async (req: NextRequest) => {
       where: { id: userToken?.id.toString() },
     });
 
-    if (user?.emailVerified) {
+    if (user?.emailVerified === true) {
       return new NextResponse("Email address already verified.", { status: 400 });
     }
 
+    await prisma.user.update({
+      where: { id: user?.id },
+      data: { emailVerified: true },
+    });
     return new NextResponse("Your account has been successfully verified.", { status: 200 });
   } catch (error) {
     return new NextResponse((error as Error).message, { status: 500 });

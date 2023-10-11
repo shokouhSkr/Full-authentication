@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex items-center justify-center">
       <Container>
-        <div className="w-full border-4 text-center border-pink-900 rounded-lg p-8 space-y-8">
+        <div className="w-full border-4 text-center text-white border-pink-900 rounded-lg p-8 space-y-8">
           {/* LOGOUT BUTTON */}
           <div className="text-end">
             {session ? (
