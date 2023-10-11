@@ -1,6 +1,9 @@
 import prisma from "@/helpers/connect";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import { activateTemplateEmail } from "@/emailTemplate/activate";
+import sendEmail from "@/helpers/sendEmail";
+import { createActivationToken } from "@/helpers/token";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -34,6 +37,22 @@ export const POST = async (req: NextRequest) => {
     const user = await prisma.user.create({
       data: { name: `${first_name} ${last_name}`, phone, email, password: cryptedPassword },
     });
+
+    // SEND ACTIVATION EMAIL (AFTER CREATE USER AND BEFORE RETURN RESPONSE)
+    const activation_token = createActivationToken({
+      id: user.id.toString(),
+    });
+
+    const url = `${process.env.NEXT_PUBLIC_URL}/activate/${activation_token}`;
+
+    await sendEmail(
+      user.email as string,
+      user.name as string,
+      "",
+      url,
+      "Activate your account - ShokouhSkr",
+      activateTemplateEmail
+    );
 
     return new NextResponse(
       JSON.stringify({
