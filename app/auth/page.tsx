@@ -1,34 +1,28 @@
+"use client";
+
 import Background from "@/components/background/Background";
 import Container from "@/components/common/Container";
+import LoginForm from "@/components/forms/LoginForm";
 import RegisterForm from "@/components/forms/RegisterForm";
-import Link from "next/link";
-import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 
 const AuthPage = () => {
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab") || "login";
+
   return (
     <div className="flex items-center justify-between p-4 lg:p-8">
-      {/* FORM */}
+      {/* FORMS */}
       <div className="space-y-10 flex flex-col items-center justify-center">
-        {/* TITLE */}
-        <div className="space-y-4 text-center">
-          <h1 className="font-semibold text-4xl">Sign up</h1>
-          <p className="text-xl">
-            You already have an account?{" "}
-            <Link
-              href="/"
-              className="text-blue-600 ml-1 hover:text-blue-700 hover:underline-offset-2 hover:underline"
-            >
-              Sign in
-            </Link>
-          </p>
-        </div>
-
-        {/* SIGN UP FORM */}
-        <RegisterForm />
+        {tab === "login" ? <LoginForm /> : <RegisterForm />}
       </div>
 
       {/* BACKGROUND */}
-      <Background image={`../../images/reset.png`} />
+      <Background
+        image={`../../images/${
+          tab === "login" ? "login" : tab === "reset" ? "reset" : "signup"
+        }.png`}
+      />
     </div>
   );
 };

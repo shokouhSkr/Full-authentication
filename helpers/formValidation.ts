@@ -1,20 +1,18 @@
 import { z } from "zod";
 
-type FormSchemaType = z.infer<typeof FormSchema>;
-
-export const FormSchema = z
+export const RegisterFormSchema = z
   .object({
     first_name: z
       .string()
       .min(2, "First name must be at least 2 characters.")
       .max(32, "First name must be less than 32 characters.")
-      .regex(/^[a-zA-Z]+$/, "No special characters allowed."),
+      .regex(/^[\u0600-\u06FFa-zA-Z]+$/, "No special characters allowed."),
 
     last_name: z
       .string()
       .min(2, "Last name must be at least 2 characters.")
       .max(32, "Last name must be less than 32 characters.")
-      .regex(/^[a-zA-Z]+$/, "No special characters allowed."),
+      .regex(/^[\u0600-\u06FFa-zA-Z]+$/, "No special characters allowed."),
 
     email: z.string().email("Please enter a valid email address."),
 
@@ -38,3 +36,12 @@ export const FormSchema = z
     message: "Password doesn't match",
     path: ["confirmPassword"],
   });
+
+export const LoginFormSchema = z.object({
+  email: z.string().email("Please enter a valid email address."),
+
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 characters.")
+    .max(52, "Password must be less than 52 characters."),
+});

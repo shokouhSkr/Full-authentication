@@ -3,29 +3,67 @@ import { Account, NextAuthOptions, Profile, User, getServerSession } from "next-
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "./connect";
 
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import DiscordProvider from "next-auth/providers/discord";
 import TwitterProvider from "next-auth/providers/twitter";
 import { Adapter } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
+import bcrypt from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
 
   providers: [
+    // SIGN IN WITH EMAIL AND PASSWORD
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Name",
+          type: "text",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+        },
+      },
+
+      async authorize(credentials) {
+        const user = await prisma.user.findUnique({
+          where: { email: credentials!.email },
+        });
+
+        if (!user) {
+          throw new Error("Email is not registered.");
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(credentials!.password, user.password!);
+
+        if (!isPasswordCorrect) {
+          throw new Error("Password is incorrect.");
+        }
+
+        return user;
+      },
+    }),
+
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
     }),
+
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
     }),
+
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID as string,
       clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
     }),
+
     TwitterProvider({
       clientId: process.env.TWITTER_CLIENT_ID as string,
       clientSecret: process.env.TWITTER_CLIENT_SECRET as string,

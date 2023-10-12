@@ -13,7 +13,7 @@ const SlideButton = ({ type, text, slide_text, icon, disabled }: SlideButtonProp
     <button
       type={type}
       disabled={disabled}
-      className="relative w-full inline-flex justify-center group items-center px-8 h-11 overflow-hidden font-medium transition duration-300 ease-out border-2 rounded-md bg-blue-500"
+      className="relative w-full inline-flex justify-center group items-center px-8 mt-6 h-11 overflow-hidden font-medium transition duration-300 ease-out border-2 rounded-md bg-blue-500"
     >
       {disabled ? (
         <BeatLoader color="#fff" size={8} />
