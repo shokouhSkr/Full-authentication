@@ -41,11 +41,7 @@ const AuthPage = () => {
       </div>
 
       {/* BACKGROUND */}
-      <Background
-        image={`../../images/${
-          tab === "login" ? "login" : tab === "reset" ? "reset" : "signup"
-        }.png`}
-      />
+      <Background image={`../../images/${tab === "login" ? "login" : "signup"}.png`} />
     </div>
   );
 };

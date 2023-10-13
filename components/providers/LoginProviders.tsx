@@ -2,18 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ClientSafeProvider, getProviders, signIn } from "next-auth/react";
-import { FaDiscord, FaGithub } from "react-icons/fa";
-
-export const createIconJsx = (providerId: string) => {
-  switch (providerId) {
-    case "github":
-      return <FaGithub />;
-    case "discord":
-      return <FaDiscord />;
-    default:
-      return;
-  }
-};
+import { createIconJsx } from "@/helpers/utils";
 
 const LoginProviders = ({ tab, csrfToken }: { tab: string; csrfToken: string }) => {
   const [providerArray, setProviderArray] = useState<ClientSafeProvider[]>([]);
@@ -29,7 +18,11 @@ const LoginProviders = ({ tab, csrfToken }: { tab: string; csrfToken: string }) 
   }, []);
 
   return (
-    <div className={`${tab === "signup" ? "grid grid-cols-2" : "flex flex-col"} w-full gap-4 mt-8`}>
+    <div
+      className={`${
+        tab === "signup" ? "grid grid-cols-1 sm:grid-cols-2" : "flex flex-col"
+      } w-full gap-4 mt-8`}
+    >
       {providerArray.map((provider: any) => {
         if (provider.name === "Credentials") return;
 

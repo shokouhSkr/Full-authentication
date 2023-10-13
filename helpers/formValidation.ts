@@ -45,3 +45,7 @@ export const LoginFormSchema = z.object({
     .min(6, "Password must be at least 6 characters.")
     .max(52, "Password must be less than 52 characters."),
 });
+
+export const ForgetFormSchema = z.object({
+  email: z.string().email("Please enter a valid email address."),
+});

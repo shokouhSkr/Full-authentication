@@ -11,6 +11,7 @@ import { LoginFormSchema } from "@/helpers/formValidation";
 import AuthHeader from "./AuthHeader";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type LoginFormSchemaType = z.infer<typeof LoginFormSchema>;
 
@@ -72,6 +73,10 @@ const LoginForm = ({ callbackUrl, csrfToken }: { callbackUrl: string; csrfToken:
           error={errors?.password?.message}
           disabled={isSubmitting}
         />
+
+        <Link href="/reset-password" className="text-blue-500 mt-2 inline-block hover:underline">
+          Forget password?
+        </Link>
 
         <SlideButton
           type="submit"

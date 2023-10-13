@@ -154,7 +154,7 @@ const RegisterForm = () => {
         </div>
 
         {/* ACCEPT TERMS AND POLICY */}
-        <div className="mt-6">
+        <div className="mt-6 flex items-center">
           <input
             type="checkbox"
             id="accept"

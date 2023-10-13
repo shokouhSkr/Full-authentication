@@ -14,8 +14,8 @@ const AuthHeader = ({ label, message, btnLabel, path }: AuthHeaderProps) => {
       <p className="text-xl">
         {message}{" "}
         <Link
-          href={`/auth?tab=${path}`}
-          className="text-blue-600 ml-1 hover:text-blue-700 hover:underline-offset-2 hover:underline"
+          href={path ? `/auth?tab=${path}` : "/auth"}
+          className="text-blue-600 ml-1 hover:text-blue-700 hover:underline"
         >
           {btnLabel}
         </Link>
