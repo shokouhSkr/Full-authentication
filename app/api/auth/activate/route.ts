@@ -19,6 +19,10 @@ export const PUT = async (req: NextRequest) => {
       where: { id: userToken?.id.toString() },
     });
 
+    if (!user) {
+      return new NextResponse("This account no longer exist.", { status: 400 });
+    }
+
     if (user?.emailVerified === true) {
       return new NextResponse("Email address already verified.", { status: 400 });
     }

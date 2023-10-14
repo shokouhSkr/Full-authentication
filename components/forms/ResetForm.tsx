@@ -5,18 +5,18 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
-import { CiUser, CiMail, CiPhone, CiLock } from "react-icons/ci";
-import Link from "next/link";
+import { CiLock } from "react-icons/ci";
 import SlideButton from "../buttons/SlideButton";
 import Input from "./Input";
 import { ResetFormSchema } from "@/helpers/formValidation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import AuthHeader from "./AuthHeader";
+import { useRouter } from "next/navigation";
 
 type ResetFormSchemaType = z.infer<typeof ResetFormSchema>;
 
-const ResetForm = ({ params }: { params: { token: string } }) => {
+const ResetForm = ({ token }: { token: string }) => {
   const {
     register,
     watch,
@@ -27,23 +27,20 @@ const ResetForm = ({ params }: { params: { token: string } }) => {
     resolver: zodResolver(ResetFormSchema),
   });
   const [passwordScore, setPasswordScore] = useState(0);
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<ResetFormSchemaType> = async (values) => {
     try {
-      const { data } = await axios.post("/api/auth/reset", {
+      const { data } = await axios.put("/api/auth/reset", {
         password: values.password,
-        token: params.token,
+        token: token,
       });
 
-      if (data.status === 401) {
-        toast.error(data.message);
-      }
-      if (data.status === 200) {
-        reset();
-        toast.success(data.message);
-      }
+      reset();
+      toast.success(data);
+      router.push("/auth");
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data);
     }
   };
 
