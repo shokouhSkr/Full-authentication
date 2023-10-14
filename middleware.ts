@@ -13,7 +13,8 @@ export async function middleware(req: NextRequest) {
 
   if (pathname === "/") {
     if (!session) {
-      return NextResponse.redirect(`https://skrfullauthentication.vercel.app/auth`);
+      return NextResponse.redirect(`http://localhost:3000/auth`);
+      // return NextResponse.redirect(`https://skrfullauthentication.vercel.app/auth`);
     }
   }
 

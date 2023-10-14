@@ -25,10 +25,10 @@ const ActivatePage = ({ params }: { params: { token: string } }) => {
   }, [token]);
 
   return (
-    <div>
+    <div className="p-4 flex items-center justify-center min-h-[calc(100dvh)]">
       {error && (
-        <div className="h-[100dvh] flex flex-col items-center justify-center text-3xl font-medium gap-4">
-          <p className="text-red-500">{error}</p>
+        <div>
+          <p className="text-red-500 text-xl md:text-3xl mb-8 font-medium">{error}</p>
           <button
             className="bg-pink-600 px-4 py-1 rounded-md text-white hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
             onClick={() => router.push("/")}
@@ -38,8 +38,8 @@ const ActivatePage = ({ params }: { params: { token: string } }) => {
         </div>
       )}
       {success && (
-        <div className="h-[100dvh] flex flex-col items-center justify-center text-3xl font-medium gap-4">
-          <p className="text-green-500">{success}</p>
+        <div>
+          <p className="text-green-500 text-xl md:text-3xl mb-8 font-medium">{success}</p>
           <button
             className="bg-pink-600 text-white px-4 py-1 rounded-md hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
             onClick={() => router.push("/")}

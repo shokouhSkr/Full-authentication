@@ -3,7 +3,7 @@ import ResetForm from "@/components/forms/ResetForm";
 
 const ResetPasswordPage = ({ params }: { params: { token: string } }) => {
   return (
-    <div className="flex items-center justify-between p-4 lg:p-8">
+    <div className="p-4 flex items-center justify-center min-h-[calc(100dvh)] md:mx-20">
       {/* FORMS */}
       <div className="flex flex-col items-center justify-center">
         <ResetForm token={params.token} />
