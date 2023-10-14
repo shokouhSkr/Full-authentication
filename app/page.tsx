@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiFillGithub } from "react-icons/ai";
 import { FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
+import { DotLoader } from "react-spinners";
 
 const text1: string =
   "This is a full build that covers the full authentication process from login, Register, sending emails (for activating account,reset password and password change notice), forgot password, reset password ,advanced form validation, protected routes, session manipulation...";
@@ -15,7 +16,12 @@ const text2: string =
 export default function Home() {
   const { data: session } = useSession();
 
-  if (!session) return <div>loading...</div>;
+  if (!session)
+    return (
+      <div className="p-4 text-lg font-medium flex items-center justify-center min-h-[calc(100dvh)] md:mx-20">
+        Check if you're a member or not... <DotLoader color="#FF81AE" size={20} className="ml-8" />
+      </div>
+    );
 
   return (
     <main className="min-h-screen flex items-center justify-center">
@@ -25,7 +31,7 @@ export default function Home() {
           <div className="text-end">
             {session ? (
               <button
-                className="bg-pink-600 px-4 py-1 rounded-md hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
+                className="bg-pink-600 text-white px-4 py-1 rounded-md hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
                 onClick={() => signOut()}
               >
                 log out
@@ -55,7 +61,9 @@ export default function Home() {
           {/* PROVIDER */}
           <div className="pb-16 border-b-2 ">
             You logged in using
-            <span className="bg-pink-600 px-4 py-1 rounded-md ml-2">{session?.user?.provider}</span>
+            <span className="bg-pink-600 text-white px-4 py-1 rounded-md ml-2">
+              {session?.user?.provider}
+            </span>
           </div>
 
           {/* WEBSITE INFO */}
