@@ -49,3 +49,17 @@ export const LoginFormSchema = z.object({
 export const ForgetFormSchema = z.object({
   email: z.string().email("Please enter a valid email address."),
 });
+
+export const ResetFormSchema = z
+  .object({
+    password: z
+      .string()
+      .min(6, "Password must be at least 6 characters.")
+      .max(52, "Password must be less than 52 characters."),
+
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password doesn't match",
+    path: ["confirmPassword"],
+  });

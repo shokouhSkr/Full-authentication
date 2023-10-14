@@ -1,13 +1,12 @@
 import Background from "@/components/background/Background";
-import ForgotForm from "@/components/forms/ForgotForm";
+import ResetForm from "@/components/forms/ResetForm";
 
 const ResetPasswordPage = () => {
   return (
     <div className="flex items-center justify-between p-4 lg:p-8">
       {/* FORMS */}
       <div className="flex flex-col items-center justify-center">
-        reset
-        <ForgotForm />
+        <ResetForm />
       </div>
 
       {/* BACKGROUND */}
