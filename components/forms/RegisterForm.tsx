@@ -31,7 +31,6 @@ const RegisterForm = () => {
   const onSubmit: SubmitHandler<RegisterFormSchemaType> = async (values) => {
     try {
       const { data } = await axios.post("/api/auth/signup", { ...values });
-      console.log("data: ", data);
 
       if (data.status === 401) {
         toast.error(data.message);

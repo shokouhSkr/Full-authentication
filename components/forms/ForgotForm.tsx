@@ -39,7 +39,7 @@ const ForgetForm = () => {
 
   return (
     <>
-      <AuthHeader label="Forgot password" message="Sign in instead" btnLabel="Sign in" />
+      <AuthHeader label="Forgot password" message="Sign in instead?" btnLabel="Sign in" />
 
       <form className="my-8 text-sm" onSubmit={handleSubmit(onSubmit)}>
         <Input

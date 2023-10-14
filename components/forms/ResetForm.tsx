@@ -60,7 +60,7 @@ const ResetForm = ({ token }: { token: string }) => {
 
   return (
     <>
-      <AuthHeader label="Reset password" message="Sign in instead" btnLabel="Sign in" />
+      <AuthHeader label="Reset password" message="Sign in instead?" btnLabel="Sign in" />
 
       <form className="my-8 text-sm" onSubmit={handleSubmit(onSubmit)}>
         <div className="gap-2 sm:grid">
