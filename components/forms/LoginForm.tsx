@@ -18,7 +18,6 @@ type LoginFormSchemaType = z.infer<typeof LoginFormSchema>;
 const LoginForm = ({ callbackUrl, csrfToken }: { callbackUrl: string; csrfToken: string }) => {
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormSchemaType>({
@@ -74,7 +73,7 @@ const LoginForm = ({ callbackUrl, csrfToken }: { callbackUrl: string; csrfToken:
           disabled={isSubmitting}
         />
 
-        <Link href="/reset-password" className="text-blue-500 mt-2 inline-block hover:underline">
+        <Link href="/forgot-password" className="text-blue-500 mt-2 inline-block hover:underline">
           Forget password?
         </Link>
 

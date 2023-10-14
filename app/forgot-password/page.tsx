@@ -1,7 +1,7 @@
 import Background from "@/components/background/Background";
-import ForgetForm from "@/components/forms/ForgetForm";
+import ForgetForm from "@/components/forms/ForgotForm";
 
-const ResetPasswordPage = () => {
+const ForgetPasswordPage = () => {
   return (
     <div className="flex items-center justify-between p-4 lg:p-8">
       {/* FORMS */}
@@ -10,9 +10,9 @@ const ResetPasswordPage = () => {
       </div>
 
       {/* BACKGROUND */}
-      <Background image="../../images/reset.png" />
+      <Background image="../../images/forgot.png" />
     </div>
   );
 };
 
-export default ResetPasswordPage;
+export default ForgetPasswordPage;
