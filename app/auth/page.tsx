@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Background from "@/components/background/Background";
-import Container from "@/components/common/Container";
 import LoginForm from "@/components/forms/LoginForm";
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getCsrfToken } from "next-auth/react";

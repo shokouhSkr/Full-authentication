@@ -43,7 +43,7 @@ const LoginForm = ({ callbackUrl, csrfToken }: { callbackUrl: string; csrfToken:
 
   return (
     <>
-      <AuthHeader label="Login" message="Not a member yet?" btnLabel="Sign up" path="signup" />
+      <AuthHeader label="Sign in" message="Not a member yet?" btnLabel="Sign up" path="signup" />
 
       <form
         method="POST"
@@ -79,8 +79,8 @@ const LoginForm = ({ callbackUrl, csrfToken }: { callbackUrl: string; csrfToken:
 
         <SlideButton
           type="submit"
-          text="Login"
-          slide_text="Secure login"
+          text="Sign in"
+          slide_text="Secure sign in"
           icon={<CiLock />}
           disabled={isSubmitting}
         />

@@ -13,13 +13,13 @@ const SlideButton = ({ type, text, slide_text, icon, disabled }: SlideButtonProp
     <button
       type={type}
       disabled={disabled}
-      className="relative w-full inline-flex justify-center group items-center px-8 mt-6 h-11 overflow-hidden font-medium transition duration-300 ease-out border-2 rounded-md bg-blue-500"
+      className="relative w-full inline-flex justify-center group items-center px-8 mt-6 h-11 overflow-hidden font-medium transition duration-300 ease-out border-2 rounded-md bg-[#4d78d3]"
     >
       {disabled ? (
         <BeatLoader color="#fff" size={8} />
       ) : (
         <>
-          <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-blue-600 group-hover:translate-x-0 ease-out">
+          <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#4266B6] group-hover:translate-x-0 ease-out">
             {icon} <span className="ml-1.5">{slide_text}</span>
           </span>
 
