@@ -21,16 +21,16 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const existingPhoneUser = await prisma.user.findUnique({
-      where: {
-        phone: phone,
-      },
-    });
-    if (existingPhoneUser) {
-      return new NextResponse(
-        JSON.stringify({ message: "This phone number already exists!", status: 401 })
-      );
-    }
+    // const existingPhoneUser = await prisma.user.findUnique({
+    //   where: {
+    //     phone: phone,
+    //   },
+    // });
+    // if (existingPhoneUser) {
+    //   return new NextResponse(
+    //     JSON.stringify({ message: "This phone number already exists!", status: 401 })
+    //   );
+    // }
 
     const cryptedPassword = await bcrypt.hash(password, 12);
 

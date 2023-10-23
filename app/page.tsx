@@ -19,19 +19,19 @@ export default function Home() {
   if (!session)
     return (
       <div className="p-4 text-lg font-medium flex items-center justify-center min-h-[calc(100dvh)] md:mx-20">
-        Check if you're a member or not... <DotLoader color="#FF81AE" size={20} className="ml-8" />
+        Check if you're a member or not... <DotLoader color="#7289da" size={20} className="ml-8" />
       </div>
     );
 
   return (
     <main className="min-h-screen flex items-center justify-center">
       <Container>
-        <div className="w-full border-4 text-center text-neutral-800 border-pink-900 rounded-lg p-8 space-y-8">
+        <div className="w-full text-center text-neutral-800 bg-white rounded-xl p-8 space-y-8">
           {/* LOGOUT BUTTON */}
           <div className="text-end">
             {session ? (
               <button
-                className="bg-pink-600 text-white px-4 py-1 rounded-md hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
+                className="bg-[#7289da] text-white px-4 py-1.5 rounded-md hover:bg-[#4d78d3] transition-all duration-300 active:scale-[0.98]"
                 onClick={() => signOut()}
               >
                 log out
@@ -59,9 +59,10 @@ export default function Home() {
           </div>
 
           {/* PROVIDER */}
-          <div className="pb-16 border-b-2 ">
-            You logged in using
-            <span className="bg-pink-600 text-white px-4 py-1 rounded-md ml-2">
+          <div className="pb-16 border-b-2">
+            <span className="mb-2 inline-block">You logged in using</span>
+
+            <span className="bg-[#7289da] text-white px-4 py-1.5 rounded-md ml-2">
               {session?.user?.provider}
             </span>
           </div>
@@ -78,41 +79,6 @@ export default function Home() {
                 Source code: <AiFillGithub className="text-3xl" />
               </Link>
             </p>
-          </div>
-
-          {/* REFACTOR!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-          {/* LINKS */}
-          <div className="flex justify-center gap-4 md:gap-6">
-            <Link
-              href="/"
-              className="flex gap-2 items-center justify-center hover:scale-110 transition-all duration-300"
-            >
-              <FaYoutube className="text-3xl" />
-            </Link>
-            <Link
-              href="/"
-              className="flex gap-2 items-center justify-center hover:scale-110 transition-all duration-300"
-            >
-              <FaTwitter className="text-3xl" />
-            </Link>
-            <Link
-              href="/"
-              className="flex gap-2 items-center justify-center hover:scale-110 transition-all duration-300"
-            >
-              <FaInstagram className="text-3xl" />
-            </Link>
-            <Link
-              href="/"
-              className="flex gap-2 items-center justify-center hover:scale-110 transition-all duration-300"
-            >
-              <FaLinkedin className="text-3xl" />
-            </Link>
-            <Link
-              href="/"
-              className="flex gap-2 items-center justify-center hover:scale-110 transition-all duration-300"
-            >
-              <AiFillGithub className="text-3xl" />
-            </Link>
           </div>
         </div>
       </Container>

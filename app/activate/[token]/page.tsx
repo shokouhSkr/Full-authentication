@@ -1,13 +1,12 @@
 "use client";
 
-import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import Button from "@/components/buttons/Button";
+import axios from "axios";
 
 const ActivatePage = ({ params }: { params: { token: string } }) => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const router = useRouter();
   const { token } = params;
 
   const activateAccount = async () => {
@@ -29,23 +28,13 @@ const ActivatePage = ({ params }: { params: { token: string } }) => {
       {error && (
         <div>
           <p className="text-red-500 text-xl md:text-3xl mb-8 font-medium">{error}</p>
-          <button
-            className="bg-pink-600 px-4 py-1 rounded-md text-white hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
-            onClick={() => router.push("/")}
-          >
-            Sign In instead
-          </button>
+          <Button text="Sign in instead" />
         </div>
       )}
       {success && (
         <div>
           <p className="text-green-500 text-xl md:text-3xl mb-8 font-medium">{success}</p>
-          <button
-            className="bg-pink-600 text-white px-4 py-1 rounded-md hover:bg-pink-700 transition-all duration-300 active:scale-[0.98] tracking-wider uppercase"
-            onClick={() => router.push("/")}
-          >
-            Sign In
-          </button>
+          <Button text="Sign in" />
         </div>
       )}
     </div>
