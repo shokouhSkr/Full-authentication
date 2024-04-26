@@ -16,7 +16,7 @@ export const RegisterFormSchema = z
 
     email: z.string().email("Please enter a valid email address."),
 
-    phone: z.string().regex(/^\+98 \(\d{3}\) \d{3}-\d{4}$/, "Please enter a valid phone number"),
+    phone: z.string().regex(/^09\d{9}$/, "Please enter a valid phone number"),
 
     password: z
       .string()

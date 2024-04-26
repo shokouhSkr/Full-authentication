@@ -42,6 +42,7 @@ const Input = ({
 
         {/* INPUT */}
         <input
+          {...register(name)}
           type={showPassword ? "text" : type}
           id={name}
           className={`${
@@ -50,7 +51,6 @@ const Input = ({
               : "border-gray-300 focus:border-blue-500 focus:ring-blue-700"
           } w-full py-2 pr-7 pl-8 block rounded-md border outline-offset-2 outline-transparent focus:ring-2 text-sm`}
           placeholder={placeholder}
-          {...register(name)}
         />
 
         {/* SHOW AND HIDE PASSWORD */}

@@ -105,7 +105,7 @@ const RegisterForm = () => {
             label="Phone number"
             type="text"
             icon={<CiPhone />}
-            placeholder="+98 (xxx) xxx-xxxx"
+            placeholder="09111111111"
             register={register}
             error={errors?.phone?.message}
             disabled={isSubmitting}
